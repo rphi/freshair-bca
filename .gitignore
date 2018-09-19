@@ -1,0 +1,4 @@
+.DS_store
+node_modules
+freshair-bcc-darwin-x64
+freshair-bcc-win32-x64

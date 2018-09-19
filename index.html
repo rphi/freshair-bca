@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>BCA | Broadcasting Control App | FreshAir.org.uk</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="./node_modules/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="./assets/css/cover.css" rel="stylesheet">
+  </head>
+
+  <body class="text-center">
+    <div class="cover-container">
+      <img class="mb-4" src="./assets/img/logowhite.png" alt="" height="85">
+      <h1>Welcome {{NAME}}.</h1>
+      <h4>You are in Studio 1.</h4>
+      <button id="airbutton" type="button" class="btn btn-danger btn-lg btn-block on-air-btn mt-3" onclick="buttonClick()">Off-air</button>
+      <div class="btn-group  mt-4" role="group">
+        <button class="btn btn-outline-light" data-toggle="modal" data-target="#exampleModal">Setup</button>
+        <a class="btn btn-outline-warning" href="./login.html">Logout</a>
+      </div>
+      <p class="mt-5 mb-3">&copy; FreshAir.org.uk | freshair-bca by rphi</p>
+    </div>
+
+    <div class="modal" id="exampleModal" tabindex="-1" role="dialog">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title">Broadcast settings</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <p>Broadcasting to IceCast on <code>studio.freshair.org.uk:8000</code> with mountpoint <code>live</code></p>
+            <div class="form-group">
+              <label for="exampleFormControlSelect1">Recording source</label>
+              <select class="form-control" id="exampleFormControlSelect1">
+                <option>Focussrite Scarlett i18 - digital in</option>
+                <option>Intel HD Audio</option>
+                <option>Focussrite Scarlett i18 - analog 1/2</option>
+                <option>Focussrite Scarlett i18 - analog 3/4</option>
+              </select>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            <button type="button" class="btn btn-primary">Save changes</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script>window.jQuery = window.$ = require('./node_modules/jquery/dist/jquery.min.js');</script>
+    <!--<script src="./node_modules/popper.js/dist/popper.min.js"></script>-->
+    <script src="./node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
+
+    <script>
+
+      function buttonClick() {
+        var b = $('#airbutton');
+        if (b.hasClass('btn-success')) {
+          b.addClass('btn-warning').removeClass('btn-success');
+          b.html('Stopping stream...');
+          setTimeout(() => {
+            b.addClass('btn-danger').removeClass('btn-warning');
+            b.html('Off-air');
+          }, 1000);
+        } else {
+          b.addClass('btn-warning').removeClass('btn-danger');
+          b.html('Starting stream...');
+          setTimeout(() => {
+            b.addClass('btn-success').removeClass('btn-warning');
+            b.html('On Air');
+          }, 1000);
+        }
+      }
+    </script>
+  </body>
+</html>
